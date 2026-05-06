@@ -56,47 +56,47 @@ class GestorTareas:
         return self.tareas
 
     def mover_tarea(self, indice, nueva_columna):
-        valido, mensaje = validar_indice_tarea(indice, len(self.tareas))
+        valido, idx = validar_indice_tarea(indice, len(self.tareas))
         if not valido:
-            return False, mensaje
+            return False, idx
 
         valido, mensaje = validar_columna(nueva_columna, self.columnas)
         if not valido:
             return False, mensaje
 
-        self.tareas[indice]["columna"] = nueva_columna
-        self.tareas[indice]["actualizada"] = obtener_fecha_actual()
+        self.tareas[idx]["columna"] = nueva_columna
+        self.tareas[idx]["actualizada"] = obtener_fecha_actual()
         self.guardar()
         return True, f"Tarea movida a '{self.nombres_columnas[nueva_columna]}'"
 
     def editar_tarea(self, indice, nuevo_titulo=None, nueva_descripcion=None):
-        valido, mensaje = validar_indice_tarea(indice, len(self.tareas))
+        valido, idx = validar_indice_tarea(indice, len(self.tareas))
         if not valido:
-            return False, mensaje
+            return False, idx
 
         if nuevo_titulo:
             valido, mensaje = validar_titulo(nuevo_titulo)
             if not valido:
                 return False, mensaje
-            self.tareas[indice]["titulo"] = nuevo_titulo.strip()
+            self.tareas[idx]["titulo"] = nuevo_titulo.strip()
 
         if nueva_descripcion is not None:
             valido, mensaje = validar_descripcion(nueva_descripcion)
             if not valido:
                 return False, mensaje
-            self.tareas[indice]["descripcion"] = nueva_descripcion.strip()
+            self.tareas[idx]["descripcion"] = nueva_descripcion.strip()
 
-        self.tareas[indice]["actualizada"] = obtener_fecha_actual()
+        self.tareas[idx]["actualizada"] = obtener_fecha_actual()
         self.guardar()
         return True, "Tarea actualizada"
 
     def eliminar_tarea(self, indice):
-        valido, mensaje = validar_indice_tarea(indice, len(self.tareas))
+        valido, resultado = validar_indice_tarea(indice, len(self.tareas))
         if not valido:
-            return False, mensaje
+            return False, resultado
 
-        titulo = self.tareas[indice]["titulo"]
-        del self.tareas[indice]
+        titulo = self.tareas[resultado]["titulo"]
+        del self.tareas[resultado]
         self.guardar()
         return True, f"Tarea '{titulo}' eliminada"
 
