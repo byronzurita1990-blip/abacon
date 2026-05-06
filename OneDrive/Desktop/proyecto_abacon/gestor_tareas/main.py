@@ -45,7 +45,7 @@ def obtener_tarea_seleccionada(gestor, indice):
 
 def confirmar_accion(titulo, accion):
     """Confirmación robusta que muestra el título de la tarea."""
-    print(f"\n{AMARILLO}¿{accionar} '{titulo}'?{RESET}")
+    print(f"\n{AMARILLO}¿{accion} '{titulo}'?{RESET}")
     print(f"  Escribe {MAGENTA}s{RESET} para confirmar o cualquier cosa para cancelar")
     confirmacion = input("> ").strip().lower()
     return confirmacion == "s"
