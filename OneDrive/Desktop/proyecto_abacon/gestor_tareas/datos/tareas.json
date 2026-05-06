@@ -1,0 +1,62 @@
+{
+  "tareas": [
+    {
+      "id": 1,
+      "titulo": "Primera tarea",
+      "descripcion": "Prueba de persistencia",
+      "columna": "por_hacer",
+      "creada": "2026-05-06T10:57:39.418432",
+      "actualizada": "2026-05-06T10:57:39.418457"
+    },
+    {
+      "id": 3,
+      "titulo": "Tercera tarea",
+      "descripcion": "Completada",
+      "columna": "hecho",
+      "creada": "2026-05-06T10:58:25.930101",
+      "actualizada": "2026-05-06T10:58:25.930108"
+    },
+    {
+      "id": 4,
+      "titulo": "Tarea de prueba 1",
+      "descripcion": "descripcion 1",
+      "columna": "por_hacer",
+      "creada": "2026-05-06T11:00:29.769788",
+      "actualizada": "2026-05-06T11:00:29.769828"
+    },
+    {
+      "id": 5,
+      "titulo": "Tarea de prueba 2",
+      "descripcion": "descripcion 2",
+      "columna": "en_progreso",
+      "creada": "2026-05-06T11:00:29.770560",
+      "actualizada": "2026-05-06T11:00:29.770565"
+    },
+    {
+      "id": 6,
+      "titulo": "Tarea de prueba 3",
+      "descripcion": "descripcion 3",
+      "columna": "hecho",
+      "creada": "2026-05-06T11:00:29.771114",
+      "actualizada": "2026-05-06T11:00:29.771119"
+    },
+    {
+      "id": 7,
+      "titulo": "realizar limpieza general",
+      "descripcion": "limpiar toda la casa",
+      "columna": "por_hacer",
+      "creada": "2026-05-06T11:04:06.573576",
+      "actualizada": "2026-05-06T11:04:06.573617"
+    }
+  ],
+  "columnas": [
+    "por_hacer",
+    "en_progreso",
+    "hecho"
+  ],
+  "nombre_columnas": {
+    "por_hacer": "Por hacer",
+    "en_progreso": "En progreso",
+    "hecho": "Hecho"
+  }
+}
