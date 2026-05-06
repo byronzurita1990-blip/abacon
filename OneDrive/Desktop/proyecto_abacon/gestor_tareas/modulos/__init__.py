@@ -4,7 +4,9 @@ from .utilidades import (
     validar_descripcion,
     validar_columna,
     limpiar_pantalla,
-    pausar
+    pausar,
+    VERDE, ROJO, AMARILLO, AZUL, MAGENTA, NEGRITA, RESET,
+    generar_grafico_barras
 )
 
 __all__ = [
@@ -13,5 +15,7 @@ __all__ = [
     'validar_descripcion',
     'validar_columna',
     'limpiar_pantalla',
-    'pausar'
+    'pausar',
+    'VERDE', 'ROJO', 'AMARILLO', 'AZUL', 'MAGENTA', 'NEGRITA', 'RESET',
+    'generar_grafico_barras'
 ]

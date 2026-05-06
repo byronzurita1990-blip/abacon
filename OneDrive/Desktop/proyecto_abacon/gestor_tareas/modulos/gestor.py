@@ -7,7 +7,9 @@ from .utilidades import (
     validar_indice_tarea,
     generar_id_tarea,
     obtener_fecha_actual,
-    formatear_fecha
+    formatear_fecha,
+    generar_grafico_barras,
+    VERDE, ROJO, AMARILLO, AZUL, MAGENTA, NEGRITA, RESET
 )
 
 
@@ -106,16 +108,18 @@ class GestorTareas:
 
     def mostrar_tablero(self):
         print("\n" + "=" * 50)
-        print("TABLERO KANBAN".center(50))
+        print(f"{AZUL}{NEGRITA}TABLERO KANBAN{RESET}".center(50))
         print("=" * 50)
 
         tareas_por_col = self.obtener_tareas_por_columna()
+        colores = {"por_hacer": AMARILLO, "en_progreso": AZUL, "hecho": VERDE}
 
         for columna in self.columnas:
             nombre = self.nombres_columnas[columna]
             tareas = tareas_por_col[columna]
+            color = colores.get(columna, "")
 
-            print(f"\n--- {nombre} ({len(tareas)}) ---")
+            print(f"\n{color}--- {nombre} ({len(tareas)}) ---{RESET}")
             if not tareas:
                 print("  (sin tareas)")
             else:
@@ -124,21 +128,21 @@ class GestorTareas:
 
     def mostrar_tareas_detalladas(self, columna=None):
         print("\n" + "=" * 50)
-        print("LISTA DE TAREAS".center(50))
+        print(f"{AZUL}{NEGRITA}LISTA DE TAREAS{RESET}".center(50))
         print("=" * 50)
 
         tareas = self.listar_tareas(columna)
 
         if not tareas:
-            print("\nNo hay tareas todavía.")
+            print(f"\n{AMARILLO}No hay tareas todavia.{RESET}")
             return
 
         for i, tarea in enumerate(tareas, 1):
             nombre_col = self.nombres_columnas[tarea["columna"]]
-            print(f"\n[{i}] {tarea['titulo']}")
+            print(f"\n{MAGENTA}[{i}]{RESET} {NEGRITA}{tarea['titulo']}{RESET}")
             print(f"    Estado: {nombre_col}")
             if tarea.get("descripcion"):
-                print(f"    Descripción: {tarea['descripcion']}")
+                print(f"    Descripcion: {tarea['descripcion']}")
             print(f"    Creada: {formatear_fecha(tarea['creada'])}")
             print(f"    Actualizada: {formatear_fecha(tarea['actualizada'])}")
 
@@ -148,4 +152,8 @@ class GestorTareas:
         for col in self.columnas:
             por_columna[col] = len([t for t in self.tareas if t["columna"] == col])
 
-        return total, por_columna
+        # Crear dict con nombres legibles para el gráfico
+        nombres_stats = {self.nombres_columnas[col]: cant for col, cant in por_columna.items()}
+        grafico = generar_grafico_barras(nombres_stats)
+
+        return total, por_columna, grafico

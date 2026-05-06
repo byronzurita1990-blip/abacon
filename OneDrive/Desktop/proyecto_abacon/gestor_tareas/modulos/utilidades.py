@@ -3,6 +3,20 @@ import sys
 import json
 from pathlib import Path
 
+# Colores para consola
+try:
+    from colorama import init, Fore, Style
+    init(autoreset=True)
+    VERDE = Fore.GREEN
+    ROJO = Fore.RED
+    AMARILLO = Fore.YELLOW
+    AZUL = Fore.CYAN
+    MAGENTA = Fore.MAGENTA
+    NEGRITA = Style.BRIGHT
+    RESET = Style.RESET_ALL
+except ImportError:
+    VERDE = ROJO = AMARILLO = AZUL = MAGENTA = NEGRITA = RESET = ""
+
 
 def obtener_ruta_datos():
     base_dir = Path(__file__).parent.parent
@@ -88,3 +102,28 @@ def formatear_fecha(fecha_iso):
 def obtener_fecha_actual():
     from datetime import datetime
     return datetime.now().isoformat()
+
+
+def generar_grafico_barras(datos, ancho=20):
+    """Genera un grafico de barras ASCII (compatible con Windows)."""
+    if not datos:
+        return "Sin datos"
+
+    total = sum(datos.values())
+    if total == 0:
+        return "Sin tareas"
+
+    lineas = []
+    for clave, valor in datos.items():
+        porcentaje = (valor / total) * 100
+        bloques = int((valor / total) * ancho) if total > 0 else 0
+        barra = "#" * bloques + "-" * (ancho - bloques)
+        lineas.append(f"{clave:12} [{barra}] {valor} ({porcentaje:.1f}%)")
+
+    return "\n".join(lineas)
+
+
+def formatear_porcentaje(valor, total):
+    if total == 0:
+        return "0%"
+    return f"{(valor/total)*100:.1f}%"
