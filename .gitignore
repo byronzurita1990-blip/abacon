@@ -1,0 +1,32 @@
+# Archivos de sistema y personales
+AppData/
+Contacts/
+Downloads/
+Favorites/
+Music/
+Videos/
+*.lnk
+*.ini
+NTUSER.*
+
+# Archivos de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.log
+
+# Entornos virtuales
+.venv/
+env/
+venv/
+
+# Configuración de VSCode
+.vscode/
+.vscode-shared/
+
+# Archivos temporales
+*.tmp
+*.bak
+*.swp
